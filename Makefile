@@ -13,6 +13,12 @@ FILE_NAMES 	=	main.c
 
 FILES	=	$(addprefix $(DIR_FILES)/, $(FILE_NAMES))
 OBJECTS	=	$(addprefix $(DIR_OBJECTS)/, $(FILE_NAMES:.c=.o))
+
+# TEST_FILES	=  $(shell (make -C $(DIR_STRCONV) get))
+
+GET_STRCONV_FILES	=	$(addprefix $(DIR_STRCONV), $(shell (make --no-print-directory -C $(DIR_STRCONV) get)))
+GET_STRCONV_FILES	=	$(addprefix $(DIR_COMMON), $(shell (make --no-print-directory -C $(DIR_COMMON) get)))
+
 LIB_STRCONV	=	$(DIR_STRCONV)strconv.a
 LIB_COMMON	=	$(DIR_COMMON)common.a
 
@@ -49,5 +55,9 @@ fclean : clean
 			@make -C $(DIR_COMMON) fclean
 
 .PHONY: all, clean, fclean, re
+
+test :
+			@echo $(TEST_TEST_FILES)
+#echo $(@make -C $(DIR_STRCONV) get)
 
 re: fclean all

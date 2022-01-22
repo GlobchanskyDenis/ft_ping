@@ -7,7 +7,7 @@ DIR_OBJECTS	=	./obj
 DIR_INCLUDE	=   ../includes
 DIR_FILES	=   ./src
 
-# FILE_NAMES 	=	ft_isalnum.c		\
+FILE_NAMES 	=	ft_isalnum.c		\
 				ft_isalpha.c		\
 				ft_isascii.c		\
 				ft_isdigit.c		\
@@ -16,7 +16,7 @@ DIR_FILES	=   ./src
 				isallhex.c			\
 				ishex.c
 
-FILE_NAMES	=	ft_isalnum.c	ft_isdigit.c 
+#FILE_NAMES	=	ft_isalnum.c	ft_isdigit.c 
 
 FILES	=	$(addprefix $(DIR_FILES)/, $(FILE_NAMES))
 OBJECTS	=	$(addprefix $(DIR_OBJECTS)/, $(FILE_NAMES:.c=.o))
@@ -43,6 +43,10 @@ fclean : clean
 			@echo -n "remove $(NAME) library"
 			@rm -f $(NAME)
 			@echo "\t -- \033[32mDone\033[m"
+
+##	Эта инструкция создает объектные файлы, но не соединяет их в либу и отдает полученные имена файлов верхнему Makefile-у
+get: $(OBJECTS) $(DIR_INCLUDE)/common.h
+			@echo $(OBJECTS)
 
 .PHONY: all, clean, fclean, re
 

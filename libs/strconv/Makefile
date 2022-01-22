@@ -48,6 +48,9 @@ fclean : clean
 			@echo "\t -- \033[32mDone\033[m"
 			@make -C $(DIR_COMMON) fclean
 
+get : $(OBJECTS) $(DIR_INCLUDE)/strconv.h
+			@echo $(OBJECTS)
+
 .PHONY: all, clean, fclean, re
 
 re: fclean all
